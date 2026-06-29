@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quinta da Magarenha · Restaurante &amp; Casamentos · Viseu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:    #0d0d0d;
+  --bg2:   #111111;
+  --bg3:   #161616;
+  --ivory: #f2ede6;
+  --ivory2:#e8e1d8;
+  --gold:  #b8965a;
+  --gold2: #cda96e;
+  --muted: #6b6460;
+  --serif: 'Cormorant Garamond',Georgia,serif;
+  --sans:  'Montserrat',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ivory);font-family:var(--sans);font-weight:300;overflow-x:hidden;line-height:1.7}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(13,13,13,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(184,150,90,.14);
+  transition:box-shadow .3s;
+}
+nav.s{box-shadow:0 4px 30px rgba(0,0,0,.6)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,237,230,.4);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{background:transparent;color:var(--gold);border:1px solid rgba(184,150,90,.45);padding:.48rem 1.4rem;font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s}
+.nav-btn:hover{background:var(--gold);color:#0d0d0d}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  padding:100px 5vw 60px;
+  background:#0d0d0d;
+  position:relative;overflow:hidden;
+}
+/* subtle grid lines */
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(184,150,90,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,150,90,.03) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+.hero::after{
+  content:'';position:absolute;
+  top:50%;right:0;width:50%;height:100%;
+  background:radial-gradient(ellipse at 70% 50%, rgba(184,150,90,.07) 0%,transparent 65%);
+  transform:translateY(-50%);pointer-events:none;
+}
+
+.hero-left{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.8rem;
+  font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;
+}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,5.5vw,5.5rem);
+  font-weight:300;line-height:1.0;
+  color:var(--ivory);letter-spacing:-.01em;
+  margin-bottom:1.8rem;
+}
+.hero h1 em{display:block;font-style:italic;color:var(--gold);font-weight:300}
+.hero-desc{font-size:.8rem;color:rgba(242,237,230,.45);max-width:380px;line-height:1.9;margin-bottom:2.6rem;letter-spacing:.03em}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#0d0d0d;padding:.82rem 2.2rem;border:none;cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-line{background:transparent;color:var(--ivory);padding:.82rem 2.2rem;border:1px solid rgba(242,237,230,.2);cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-line:hover{border-color:rgba(242,237,230,.5);color:var(--ivory)}
+.hero-stats{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(184,150,90,.12)}
+.hstat strong{display:block;font-family:var(--serif);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.hstat span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem;display:block}
+
+/* hero visual */
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:580px}
+.orb-outer{
+  position:absolute;
+  width:430px;height:430px;border-radius:50%;
+  border:1px solid rgba(184,150,90,.08);
+  animation:rot 40s linear infinite;
+}
+.orb-mid{
+  position:absolute;
+  width:320px;height:320px;border-radius:50%;
+  border:1px solid rgba(184,150,90,.05);
+  animation:rot 28s linear infinite reverse;
+}
+@keyframes rot{to{transform:rotate(360deg)}}
+.orb-core{
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#1e1e1e 0%,#0d0d0d 100%);
+  border:1px solid rgba(184,150,90,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:5.5rem;z-index:3;position:relative;
+  box-shadow:0 0 60px rgba(184,150,90,.08),inset 0 0 40px rgba(184,150,90,.03);
+  animation:breathe 5s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{box-shadow:0 0 60px rgba(184,150,90,.08),inset 0 0 40px rgba(184,150,90,.03)}
+  50%{box-shadow:0 0 90px rgba(184,150,90,.14),inset 0 0 60px rgba(184,150,90,.05)}
+}
+.orb-node{
+  position:absolute;width:78px;height:78px;border-radius:50%;
+  background:#111;border:1px solid rgba(184,150,90,.16);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;
+  z-index:4;box-shadow:0 4px 20px rgba(0,0,0,.5);
+  animation:float 3.5s ease-in-out infinite;
+}
+.n1{top:20px;left:50%;margin-left:-39px;animation-delay:0s}
+.n2{top:50%;right:30px;margin-top:-39px;animation-delay:.7s}
+.n3{bottom:20px;left:50%;margin-left:-39px;animation-delay:1.4s}
+.n4{top:50%;left:30px;margin-top:-39px;animation-delay:.35s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* SECTION BASE */
+.sec-label{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.8rem}
+.sec-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,3rem);font-weight:300;color:var(--ivory);line-height:1.1;letter-spacing:-.01em}
+.sec-title em{font-style:italic;color:var(--gold)}
+
+/* PRATOS */
+.pratos{background:var(--bg2);padding:7rem 5vw}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;flex-wrap:wrap;gap:1rem}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,150,90,.08)}
+.pcard{
+  background:var(--bg2);padding:0;overflow:hidden;
+  transition:background .3s;cursor:pointer;position:relative;
+}
+.pcard:hover{background:var(--bg3)}
+.pcard::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s;
+}
+.pcard:hover::after{transform:scaleX(1)}
+.pcard-top{
+  height:180px;display:flex;align-items:center;justify-content:center;
+  background:#0d0d0d;font-size:4.5rem;position:relative;
+  border-bottom:1px solid rgba(184,150,90,.07);
+}
+.pcard-top::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at center,rgba(184,150,90,.05) 0%,transparent 65%);
+}
+.badge{
+  position:absolute;top:.8rem;right:.8rem;
+  font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(184,150,90,.3);
+  padding:.18rem .55rem;
+}
+.pcard-body{padding:1.6rem}
+.pcard-cat{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.pcard-name{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--ivory);line-height:1.2;margin-bottom:.6rem}
+.pcard-desc{font-size:.75rem;color:rgba(242,237,230,.38);line-height:1.7}
+.pcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid rgba(184,150,90,.08)}
+.pcard-stars{color:var(--gold);font-size:.68rem;letter-spacing:2px}
+.pcard-plus{
+  width:28px;height:28px;border:1px solid rgba(184,150,90,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1rem;cursor:pointer;
+  transition:all .2s;flex-shrink:0;
+}
+.pcard-plus:hover{background:var(--gold);color:#0d0d0d;border-color:var(--gold)}
+
+/* SOBRE */
+.sobre{padding:7rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;background:var(--bg)}
+.sobre-vis{position:relative;height:520px}
+.sbox{
+  position:absolute;inset:0;
+  background:#111;border:1px solid rgba(184,150,90,.1);
+  display:flex;align-items:center;justify-content:center;font-size:9rem;
+  overflow:hidden;
+}
+.sbox::before{
+  content:'QUINTA DA MAGARENHA';
+  position:absolute;
+  font-family:var(--serif);font-size:5.5rem;font-weight:300;
+  color:rgba(184,150,90,.025);
+  white-space:nowrap;transform:rotate(-10deg);letter-spacing:.1em;
+  pointer-events:none;
+}
+.sbadge-tl{
+  position:absolute;top:-1.5rem;left:-1.5rem;
+  width:100px;height:100px;background:var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.sbadge-tl strong{font-family:var(--serif);font-size:2rem;font-weight:300;color:#0d0d0d;line-height:1}
+.sbadge-tl span{font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(13,13,13,.65);margin-top:.15rem}
+.sbadge-br{
+  position:absolute;bottom:-1.1rem;right:-1.1rem;
+  background:var(--bg3);border:1px solid rgba(184,150,90,.25);
+  padding:.8rem 1.2rem;
+}
+.sbadge-br span{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.22rem}
+.sbadge-br strong{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--ivory)}
+.sobre-text p{font-size:.85rem;color:rgba(242,237,230,.5);line-height:1.9;margin-top:1.4rem;max-width:460px}
+.pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:2rem}
+.pill{border:1px solid rgba(184,150,90,.2);padding:.28rem .85rem;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+
+/* CASAMENTOS */
+.casamentos{background:var(--bg2);padding:7rem 5vw;position:relative;overflow:hidden}
+.cas-decor{
+  position:absolute;top:-60px;right:-60px;width:420px;height:420px;border-radius:50%;
+  border:1px solid rgba(184,150,90,.05);pointer-events:none;
+}
+.cas-decor::before{
+  content:'';position:absolute;inset:30px;border-radius:50%;
+  border:1px solid rgba(184,150,90,.04);
+}
+.cas-grid{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:center;margin-top:3rem}
+.cas-feats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,150,90,.07);margin-top:2.4rem}
+.cfeat{background:var(--bg2);padding:1.6rem;transition:background .25s;position:relative;overflow:hidden}
+.cfeat::before{content:'';position:absolute;top:0;left:0;bottom:0;width:1px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .3s}
+.cfeat:hover{background:var(--bg3)}
+.cfeat:hover::before{transform:scaleY(1)}
+.cfeat-icon{font-size:1.6rem;margin-bottom:.7rem;opacity:.8}
+.cfeat strong{display:block;font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--ivory);margin-bottom:.28rem}
+.cfeat span{font-size:.72rem;color:var(--muted)}
+.cas-vis{}
+.cas-main{
+  height:420px;background:#0d0d0d;border:1px solid rgba(184,150,90,.1);
+  display:flex;align-items:center;justify-content:center;font-size:7rem;
+  position:relative;overflow:hidden;
+}
+.cas-main::after{
+  content:'"O dia mais especial da vossa vida"';
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.2rem 1.6rem;
+  font-family:var(--serif);font-style:italic;font-size:.9rem;
+  color:rgba(242,237,230,.45);
+  background:linear-gradient(to top,rgba(13,13,13,.95) 0%,transparent 100%);
+}
+.cas-nums{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,150,90,.07);margin-top:1px}
+.cnum{background:var(--bg);padding:1.2rem;text-align:center}
+.cnum strong{display:block;font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--gold);line-height:1}
+.cnum span{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;display:block}
+
+/* REVIEWS */
+.reviews{background:var(--bg);padding:7rem 5vw}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,150,90,.07);margin-top:3.5rem}
+.rcard{background:var(--bg);padding:2.4rem;transition:background .25s,transform .25s;position:relative;overflow:hidden}
+.rcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.rcard:hover{background:var(--bg2);transform:translateY(-4px)}
+.rcard:hover::after{transform:scaleX(1)}
+.rstars{color:var(--gold);font-size:.72rem;letter-spacing:3px;margin-bottom:1.1rem}
+.rquote{font-family:var(--serif);font-style:italic;font-size:1.05rem;font-weight:300;color:var(--ivory);line-height:1.6;margin-bottom:1.3rem}
+.rauthor{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.rrole{font-size:.7rem;color:var(--muted);margin-top:.16rem}
+
+/* CTA BAND */
+.cta-band{
+  background:var(--ivory);padding:5rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;
+}
+.cta-band h2{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:300;color:#0d0d0d;line-height:1.1}
+.cta-band h2 em{font-style:italic;color:#7a6040}
+.cta-band p{font-size:.8rem;color:rgba(13,13,13,.5);margin-top:.8rem;max-width:380px;letter-spacing:.02em}
+.btn-dark{background:#0d0d0d;color:var(--ivory2);padding:.95rem 2.4rem;border:none;cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .25s;text-decoration:none;display:inline-block;white-space:nowrap}
+.btn-dark:hover{background:#1a1a1a;transform:translateY(-2px)}
+
+/* CONTACTO */
+.contacto{background:var(--bg2);padding:7rem 5vw;display:grid;grid-template-columns:1fr 1.15fr;gap:7rem}
+.cont-desc{font-size:.82rem;color:var(--muted);margin-top:1.4rem;max-width:340px;line-height:1.85}
+.irows{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.3rem}
+.irow{display:flex;gap:1.2rem;align-items:flex-start}
+.irow-icon{
+  width:36px;height:36px;
+  border:1px solid rgba(184,150,90,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;flex-shrink:0;color:var(--gold);
+}
+.irow-text label{display:block;font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.irow-text span{font-size:.82rem;color:rgba(242,237,230,.5)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+.fg{margin-bottom:.9rem}
+.fg label{display:block;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:#111;
+  border:1px solid rgba(184,150,90,.12);
+  padding:.8rem 1rem;font-family:var(--sans);font-size:.8rem;
+  color:var(--ivory);outline:none;transition:border-color .2s;
+  appearance:none;border-radius:0;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(242,237,230,.18)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(184,150,90,.5)}
+.fg select option{background:#111}
+.fg textarea{min-height:105px;resize:vertical}
+
+/* FOOTER */
+footer{background:#080808;border-top:1px solid rgba(184,150,90,.09);padding:4rem 5vw 2.2rem}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2.8rem;border-bottom:1px solid rgba(184,150,90,.07)}
+.fbrand p{font-size:.76rem;color:rgba(242,237,230,.28);margin-top:1.1rem;max-width:230px;line-height:1.75}
+.fcol h5{font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.fcol a{text-decoration:none;font-size:.76rem;color:rgba(242,237,230,.3);transition:color .2s}
+.fcol a:hover{color:var(--gold)}
+.fbot{display:flex;justify-content:space-between;padding-top:2rem;font-size:.65rem;color:rgba(242,237,230,.18);flex-wrap:wrap;gap:.5rem}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;padding:100px 5vw 50px}
+  .hero-right{height:300px;margin-top:2rem}
+  .orb-outer{width:270px;height:270px}
+  .orb-mid{width:200px;height:200px}
+  .orb-core{width:160px;height:160px;font-size:4rem}
+  .orb-node{width:60px;height:60px;font-size:1.6rem}
+  .n2{right:15px}.n4{left:15px}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .sobre{grid-template-columns:1fr;gap:3rem}
+  .cas-grid{grid-template-columns:1fr;gap:3rem}
+  .rgrid{grid-template-columns:1fr}
+  .contacto{grid-template-columns:1fr;gap:3rem}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .pgrid,.fgrid,.frow{grid-template-columns:1fr}
+  .cas-feats,.cas-nums{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <svg viewBox="0 0 195 40" width="175" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="20" width="28" height="17" fill="#b8965a"/>
+    <polygon points="15,5 1,20 29,20" fill="#a07840"/>
+    <rect x="11" y="27" width="8" height="10" fill="#0d0d0d"/>
+    <rect x="3" y="22" width="5" height="5" fill="rgba(13,13,13,.4)"/>
+    <rect x="21" y="22" width="5" height="5" fill="rgba(13,13,13,.4)"/>
+    <text x="3" y="5" font-size="3.2" fill="#b8965a" letter-spacing="3.8">&#9733; &#9733; &#9733;</text>
+    <text x="36" y="19" font-family="Cormorant Garamond,serif" font-size="13" font-weight="400" fill="rgba(242,237,230,.8)" letter-spacing=".8">quinta da magarenha</text>
+    <text x="36" y="31.5" font-family="Montserrat,sans-serif" font-size="5" font-weight="300" fill="#b8965a" letter-spacing="4.5">RESTAURANTE · VISEU</text>
+  </svg>
+  <ul class="nav-links">
+    <li><a href="#pratos">Ementa</a></li>
+    <li><a href="#sobre">A Quinta</a></li>
+    <li><a href="#casamentos">Casamentos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Reservar</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Viseu · Desde 1991</div>
+    <h1>
+      Sabores que<br>
+      <em>ficam na memória</em><br>
+      para sempre
+    </h1>
+    <p class="hero-desc">No alto de Viseu, qual castelo imponente, a Quinta da Magarenha é gastronomia beirã de autor — e o palco perfeito para o dia mais especial da sua vida.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-gold">Reservar Mesa</a>
+      <a href="#casamentos" class="btn-line">Casamentos &amp; Eventos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><strong>33+</strong><span>Anos de tradição</span></div>
+      <div class="hstat"><strong>750</strong><span>Lugares sentados</span></div>
+      <div class="hstat"><strong>N.º 1</strong><span>Em Viseu</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="orb-outer"></div>
+    <div class="orb-mid"></div>
+    <div class="orb-core">🍽️</div>
+    <div class="orb-node n1">🐙</div>
+    <div class="orb-node n2">🥩</div>
+    <div class="orb-node n3">🍮</div>
+    <div class="orb-node n4">🍷</div>
+  </div>
+</section>
+
+<!-- PRATOS -->
+<section class="pratos" id="pratos">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">Os nossos pratos</p>
+      <h2 class="sec-title">Sabores da <em>Beira Alta</em></h2>
+    </div>
+    <a href="#contacto" class="btn-line">Ementa completa →</a>
+  </div>
+  <div class="pgrid">
+    <div class="pcard">
+      <div class="pcard-top">🐙<span class="badge">Destaque</span></div>
+      <div class="pcard-body">
+        <p class="pcard-cat">Peixe</p>
+        <h3 class="pcard-name">Polvo Frito à Lagareiro</h3>
+        <p class="pcard-desc">Polvo do dia frito no azeite virgem extra, com arroz de tomate malandrinho e coentros frescos.</p>
+        <div class="pcard-foot"><span class="pcard-stars">★★★★★</span><div class="pcard-plus">+</div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top">🥩<span class="badge">Especialidade</span></div>
+      <div class="pcard-body">
+        <p class="pcard-cat">Carne</p>
+        <h3 class="pcard-name">Rojões à Lavrador</h3>
+        <p class="pcard-desc">Rojões de porco marinados com alho e louro, salteados com pickles e batata a murro.</p>
+        <div class="pcard-foot"><span class="pcard-stars">★★★★★</span><div class="pcard-plus">+</div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top">🍲</div>
+      <div class="pcard-body">
+        <p class="pcard-cat">Carne</p>
+        <h3 class="pcard-name">Vitela na Púcara</h3>
+        <p class="pcard-desc">Vitela estufada lentamente em púcara de barro, com ervas da quinta e vinho tinto regional.</p>
+        <div class="pcard-foot"><span class="pcard-stars">★★★★★</span><div class="pcard-plus">+</div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top">🍮<span class="badge">Segredo</span></div>
+      <div class="pcard-body">
+        <p class="pcard-cat">Sobremesa</p>
+        <h3 class="pcard-name">Doce da Vizinha</h3>
+        <p class="pcard-desc">O famoso segredo da Quinta. Leite-creme queimado e o irresistível doce da vizinha a fechar.</p>
+        <div class="pcard-foot"><span class="pcard-stars">★★★★★</span><div class="pcard-plus">+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-vis">
+    <div class="sbox">🏰</div>
+    <div class="sbadge-tl"><strong>1991</strong><span>Fundada em</span></div>
+    <div class="sbadge-br"><span>Reconhecido como</span><strong>O melhor de Viseu</strong></div>
+  </div>
+  <div>
+    <p class="sec-label">A nossa história</p>
+    <h2 class="sec-title">Hospitalidade beirã,<br><em>grandeza sem igual</em></h2>
+    <p class="sobre-text">Lá no alto, qual castelo imponente, a Quinta da Magarenha oferece mais do que belas vistas. Apesar da sua grandiosidade — 750 lugares sentados — aqui presta-se homenagem à boa hospitalidade beirã.</p>
+    <p class="sobre-text">O edifício, inaugurado em 1991, possui espaços amplos onde pode usufruir de um ambiente gastronómico distinto. Da cozinha, o Chefe José Carlos comanda uma ementa repleta de sabores regionais autênticos.</p>
+    <div class="pills">
+      <span class="pill">750 lugares</span>
+      <span class="pill">Gastronomia regional</span>
+      <span class="pill">Vista panorâmica</span>
+      <span class="pill">Chef José Carlos</span>
+      <span class="pill">Desde 1991</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASAMENTOS -->
+<section class="casamentos" id="casamentos">
+  <div class="cas-decor"></div>
+  <p class="sec-label">Quinta dos Sonhos</p>
+  <h2 class="sec-title">O vosso dia mais <em>especial</em>,<br>no lugar certo</h2>
+  <div class="cas-grid">
+    <div>
+      <div class="cas-feats">
+        <div class="cfeat"><div class="cfeat-icon">💒</div><strong>Cerimónia completa</strong><span>Interior e exterior</span></div>
+        <div class="cfeat"><div class="cfeat-icon">🍽️</div><strong>Menu exclusivo</strong><span>Personalizado para si</span></div>
+        <div class="cfeat"><div class="cfeat-icon">🌿</div><strong>Jardins privados</strong><span>Vista sobre Viseu</span></div>
+        <div class="cfeat"><div class="cfeat-icon">👥</div><strong>Até 750 convidados</strong><span>Equipa dedicada</span></div>
+      </div>
+      <a href="#contacto" class="btn-gold" style="margin-top:2.4rem;display:inline-block">Pedir orçamento gratuito</a>
+    </div>
+    <div class="cas-vis">
+      <div class="cas-main">💍</div>
+      <div class="cas-nums">
+        <div class="cnum"><strong>500+</strong><span>casamentos realizados</span></div>
+        <div class="cnum"><strong>33</strong><span>anos de experiência</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <p class="sec-label">O que dizem de nós</p>
+  <h2 class="sec-title">Palavras de quem <em>viveu</em></h2>
+  <div class="rgrid">
+    <div class="rcard">
+      <div class="rstars">★★★★★</div>
+      <p class="rquote">"O polvo foi uma revelação pura. Serviço impecável, ambiente caloroso e uma vista sobre Viseu que nunca me canso de ver. Voltamos sempre."</p>
+      <p class="rauthor">Ana &amp; Ricardo S.</p>
+      <p class="rrole">Jantar de aniversário · 2024</p>
+    </div>
+    <div class="rcard">
+      <div class="rstars">★★★★★</div>
+      <p class="rquote">"Casámos aqui em setembro. A equipa tornou tudo absolutamente perfeito — do menu personalizado à decoração. Os nossos convidados ainda falam nisso."</p>
+      <p class="rauthor">Mariana &amp; Tiago F.</p>
+      <p class="rrole">Casamento · Setembro 2024</p>
+    </div>
+    <div class="rcard">
+      <div class="rstars">★★★★★</div>
+      <p class="rquote">"O melhor restaurante de Viseu, sem qualquer dúvida. Cozinha regional de nível superior e uma hospitalidade genuína que é cada vez mais rara."</p>
+      <p class="rauthor">Carlos M.</p>
+      <p class="rrole">Cliente regular · Viseu</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div>
+    <h2>Descubra o sabor<br><em>autêntico da Beira</em></h2>
+    <p>Reserve a sua mesa hoje e viva uma experiência gastronómica que nunca vai esquecer.</p>
+  </div>
+  <a href="#contacto" class="btn-dark">Fazer Reserva Agora</a>
+</div>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div>
+    <p class="sec-label">Fale connosco</p>
+    <h2 class="sec-title">Reserve a sua<br><em>experiência</em></h2>
+    <p class="cont-desc">Para reservas de restaurante, orçamentos para casamentos ou outros eventos — estamos sempre disponíveis.</p>
+    <div class="irows">
+      <div class="irow"><div class="irow-icon">📍</div><div class="irow-text"><label>Morada</label><span>Viseu, Portugal</span></div></div>
+      <div class="irow"><div class="irow-icon">🕐</div><div class="irow-text"><label>Horário</label><span>Terça–Domingo · 12h–15h · 19h–23h</span></div></div>
+      <div class="irow"><div class="irow-icon">📞</div><div class="irow-text"><label>Telefone</label><span>+351 232 000 000</span></div></div>
+      <div class="irow"><div class="irow-icon">✉️</div><div class="irow-text"><label>Email</label><span>geral@quintadamagarenha.pt</span></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="frow">
+      <div class="fg"><label>Nome</label><input type="text" placeholder="O seu nome"></div>
+      <div class="fg"><label>Telefone</label><input type="tel" placeholder="+351 9xx xxx xxx"></div>
+    </div>
+    <div class="fg"><label>Email</label><input type="email" placeholder="email@exemplo.com"></div>
+    <div class="frow">
+      <div class="fg"><label>Tipo de reserva</label>
+        <select><option value="">Selecionar...</option><option>Restaurante</option><option>Casamento</option><option>Baptizado</option><option>Evento empresarial</option></select>
+      </div>
+      <div class="fg"><label>N.º de pessoas</label><input type="number" placeholder="Ex: 2" min="1"></div>
+    </div>
+    <div class="fg"><label>Data pretendida</label><input type="date"></div>
+    <div class="fg"><label>Mensagem</label><textarea placeholder="Diga-nos mais sobre o que procura…"></textarea></div>
+    <button class="btn-gold" style="width:100%;padding:.95rem;font-size:.65rem;letter-spacing:.22em" onclick="alert('Pedido enviado! Entraremos em contacto brevemente.')">Enviar pedido →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <svg viewBox="0 0 195 40" width="160" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="20" width="28" height="17" fill="#b8965a"/>
+        <polygon points="15,5 1,20 29,20" fill="#a07840"/>
+        <rect x="11" y="27" width="8" height="10" fill="rgba(13,13,13,.5)"/>
+        <rect x="3" y="22" width="5" height="5" fill="rgba(13,13,13,.35)"/>
+        <rect x="21" y="22" width="5" height="5" fill="rgba(13,13,13,.35)"/>
+        <text x="36" y="19" font-family="Cormorant Garamond,serif" font-size="13" font-weight="400" fill="rgba(242,237,230,.5)" letter-spacing=".8">quinta da magarenha</text>
+        <text x="36" y="31.5" font-family="Montserrat,sans-serif" font-size="5" font-weight="300" fill="#b8965a" letter-spacing="4.5">RESTAURANTE · VISEU</text>
+      </svg>
+      <p>O restaurante de referência em Viseu desde 1991. Gastronomia beirã autêntica e o cenário perfeito para momentos inesquecíveis.</p>
+    </div>
+    <div class="fcol"><h5>Restaurante</h5><ul><li><a href="#sobre">A Quinta</a></li><li><a href="#pratos">Ementa</a></li><li><a href="#contacto">Reservas</a></li></ul></div>
+    <div class="fcol"><h5>Eventos</h5><ul><li><a href="#casamentos">Casamentos</a></li><li><a href="#casamentos">Baptizados</a></li><li><a href="#casamentos">Empresas</a></li><li><a href="#contacto">Orçamentos</a></li></ul></div>
+    <div class="fcol"><h5>Contacto</h5><ul><li><a href="tel:+351232000000">+351 232 000 000</a></li><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">TripAdvisor</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Quinta da Magarenha · Todos os direitos reservados</span>
+    <span>Política de Privacidade · Termos de Uso</span>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:.08});
+document.querySelectorAll('.pcard,.rcard,.cfeat,.irow').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(16px)';
+  el.style.transition='opacity .5s ease,transform .5s ease';
+  obs.observe(el);
+});
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('s',window.scrollY>40);
+});
+</script>
+</body>
+</html>
